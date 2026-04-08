@@ -1,0 +1,78 @@
+:root {
+  --background: #121416;
+  --surface: #121416;
+  --surface-container-latest: #121416;
+  --surface-container-low: #1a1c1e;
+  --surface-container: #1e2022;
+  --surface-container-high: #282a2c;
+  --surface-bright: #37393b;
+  --surface-container-highest: #333537;
+  --primary: #91cdff;
+  --primary-container: #002c45;
+  --on-primary-container: #5296c9;
+  --secondary: #5bdbc2;
+  --tertiary: #ffb59f;
+  --outline: #8d9198;
+  --outline-variant: #42474d;
+  --on-surface: #e2e2e5;
+  --on-surface-variant: #c3c7ce;
+  --on-secondary-container: #00332b;
+  --on-background: #e2e2e5;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--background);
+  color: var(--on-surface);
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6, .hero-font {
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: var(--on-surface);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ── Material Symbols Rounded utility ───────────────────────────────────── */
+.msi {
+  font-family: 'Material Symbols Rounded', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  /* Filled style */
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.msi-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.msi-sm { font-size: 1rem; }
+.msi-md { font-size: 1.25rem; }
+.msi-lg { font-size: 1.5rem; }
+.msi-xl { font-size: 2rem; }
