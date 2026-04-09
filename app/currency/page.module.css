@@ -1,0 +1,695 @@
+.page {
+  padding: 2rem 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-space-grotesk);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--on-surface);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+.titleHighlight {
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusCard {
+  background: var(--surface-container);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  text-align: right;
+}
+
+.statusLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-variant);
+  margin-bottom: 0.25rem;
+}
+
+.statusValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary);
+  font-weight: 700;
+  font-family: var(--font-space-grotesk);
+}
+
+.statusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--secondary);
+  animation: pulseGreen 2s infinite ease-in-out;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--secondary);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: none;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+
+/* Hero Market Card */
+.heroCard {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--surface-container-low);
+  padding: 1.5rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .heroCard {
+    padding: 2rem;
+  }
+}
+
+.heroGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary) 0%, rgba(82, 150, 201, 1) 100%);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.heroCardHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroCardTitle {
+  font-family: var(--font-space-grotesk);
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.ratesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rateItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroRatePair {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  font-weight: 500;
+  margin-bottom: 0.125rem;
+}
+
+.heroRateValue {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.heroRateBig {
+  font-family: var(--font-space-grotesk);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+@media (min-width: 768px) {
+  .heroRateBig {
+    font-size: 2.5rem;
+  }
+}
+
+.heroRateCurrency {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.heroCardFooter {
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(66, 71, 77, 0.4);
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heroUpdated {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--on-surface-variant);
+  font-size: 0.75rem;
+}
+
+.heroMarketStatus {
+  background: rgba(91, 219, 194, 0.1);
+  color: var(--secondary);
+  font-size: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Conversion Tool */
+.glassPanel {
+  background: rgba(30, 32, 34, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .glassPanel {
+    padding: 2rem;
+  }
+}
+
+.toolHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.toolTitleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.toolTitle {
+  font-family: var(--font-space-grotesk);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+/* Manual Toggle */
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  font-weight: 600;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 1.125rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--surface-highest);
+  border: 1px solid var(--outline);
+  transition: .2s;
+  border-radius: 1rem;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 0.75rem;
+  width: 0.75rem;
+  left: 0.125rem;
+  bottom: 0.125rem;
+  background-color: var(--on-surface-variant);
+  transition: .2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(0.875rem);
+  background-color: var(--on-primary);
+}
+
+/* Pair Selection */
+.pairGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .pairGrid {
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+.pairCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.inputLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.1em;
+  margin-left: 0.25rem;
+}
+
+.currencySelectBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface-container-highest);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.currencySelectBtn:hover {
+  background: var(--surface-bright);
+}
+
+.currencyIconBox {
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 0.125rem;
+  background: var(--surface-container-lowest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.currencyMeta {
+  flex: 1;
+}
+
+.currencyCode {
+  font-family: var(--font-space-grotesk);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--on-surface);
+}
+
+.currencyName {
+  font-size: 0.625rem;
+  color: var(--on-surface-variant);
+}
+
+.swapBtn {
+  margin-top: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--surface-container-highest);
+  border: 1px solid rgba(66, 71, 77, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  align-self: center;
+}
+
+.swapBtn:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+@media (min-width: 768px) {
+  .swapBtn {
+    margin-top: 2rem;
+  }
+}
+
+/* Amounts */
+.amountGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .amountGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.amountInputWrapper {
+  position: relative;
+}
+
+.amountInput {
+  width: 100%;
+  background: var(--surface-container-highest);
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  font-family: var(--font-space-grotesk);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  transition: ring 2s;
+}
+
+@media (min-width: 768px) {
+  .amountInput {
+    padding: 1.5rem;
+    font-size: 1.875rem;
+  }
+}
+
+.amountInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(145, 205, 255, 0.2);
+}
+
+.amountSymbol {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--on-surface-variant);
+  font-family: var(--font-space-grotesk);
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .amountSymbol {
+    right: 1.5rem;
+  }
+}
+
+.convertedBox {
+  background: rgba(145, 205, 255, 0.05);
+  border: 1px solid rgba(145, 205, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .convertedBox {
+    padding: 1.5rem;
+  }
+}
+
+.convertedValue {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.convertedAmount {
+  font-family: var(--font-space-grotesk);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: var(--primary);
+}
+
+@media (min-width: 768px) {
+  .convertedAmount {
+    font-size: 2.25rem;
+  }
+}
+
+.convertedCurrency {
+  font-family: var(--font-space-grotesk);
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--on-primary-container);
+}
+
+/* Custom Rate Manual Overide (In Tool) */
+.manualRateBox {
+  margin-top: 1.5rem;
+  background: rgba(255, 181, 159, 0.05); /* tertiary tint */
+  border: 1px dashed var(--tertiary);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.manualRateInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.manualRateInput {
+  flex: 1;
+  background: var(--surface-container-highest);
+  border: 1px solid var(--outline);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-space-grotesk);
+  font-size: 1.25rem;
+  color: var(--on-surface);
+}
+
+.manualRateInput:focus {
+  outline: none;
+  border-color: var(--tertiary);
+  box-shadow: 0 0 0 2px rgba(255, 181, 159, 0.2);
+}
+
+/* Custom Dropdown Dialog */
+.dropdownAbsolute {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-height: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--outline);
+  padding: 1rem;
+  color: var(--on-surface);
+  outline: none;
+}
+
+.dropdownList {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.dropdownItem:hover {
+  background: var(--surface-bright);
+}
+
+/* Next Section: Cash Manager */
+.sectionBlock {
+  margin-top: 4rem;
+}
+
+.cmBox {
+  position: relative;
+  border: 1px dashed rgba(66, 71, 77, 0.4);
+  border-radius: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cmBgIcon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.cmBgIcon span {
+  font-size: 15rem;
+}
+
+.cmContent {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.soonBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(145, 205, 255, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(145, 205, 255, 0.2);
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cmTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.cmDesc {
+  font-size: 1rem;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+}
+
+.cmIcons {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.cmIconCircle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 4px solid var(--background);
+  background: var(--surface-container-highest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -0.75rem;
+}
+.cmIconCircle:first-child {
+  margin-left: 0;
+}
