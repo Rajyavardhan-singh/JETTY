@@ -1,0 +1,359 @@
+.page {
+  padding: 2rem 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-space-grotesk);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--on-surface);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+.titleHighlight {
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusCard {
+  background: var(--surface-container);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  text-align: right;
+}
+
+.statusLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--on-surface-variant);
+  margin-bottom: 0.25rem;
+}
+
+.statusValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-family: var(--font-space-grotesk);
+}
+
+.statusDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.statusDisconnected {
+  color: var(--on-surface-variant);
+}
+.statusDisconnected .statusDot {
+  background: var(--on-surface-variant);
+}
+
+.statusConnecting {
+  color: var(--tertiary);
+}
+.statusConnecting .statusDot {
+  background: var(--tertiary);
+  animation: pulseOrange 2s infinite ease-in-out;
+}
+
+.statusConnected {
+  color: var(--secondary);
+}
+.statusConnected .statusDot {
+  background: var(--secondary);
+  animation: pulseGreen 2s infinite ease-in-out;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--secondary);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: none;
+  }
+}
+
+@keyframes pulseOrange {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 6px var(--tertiary);
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: none;
+  }
+}
+
+
+/* Main Tracking Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 4fr 8fr;
+  }
+}
+
+.glassPanel {
+  background: rgba(30, 32, 34, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .glassPanel {
+    padding: 2rem;
+  }
+}
+
+.toolHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.toolTitle {
+  font-family: var(--font-space-grotesk);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.searchBox {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .searchBox {
+    flex-direction: row;
+  }
+}
+
+.inputLabel {
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.1em;
+  margin-left: 0.25rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.searchInput {
+  flex: 1;
+  background: var(--surface-container-highest);
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  font-family: var(--font-space-grotesk);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  transition: all 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(145, 205, 255, 0.2);
+}
+
+.trackBtn {
+  background: var(--primary);
+  color: var(--on-primary);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1.25rem 2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.trackBtn:hover {
+  background: var(--surface-tint);
+  transform: translateY(-2px);
+}
+
+.trackBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.infoText {
+  font-size: 0.75rem;
+  color: var(--on-surface-variant);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* Tracking Result Card */
+.resultCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--surface-container-low);
+  padding: 1.5rem;
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  min-height: 24rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .resultCard {
+    padding: 2.5rem;
+  }
+}
+
+.gradientBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(82,150,201,0.1) 0%, rgba(30,32,34,0) 100%);
+  pointer-events: none;
+}
+
+.dataGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .dataGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.dataBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.dataValue {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.dataValueSmall {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.mapPlaceholder {
+  flex: 1;
+  border: 1px dashed rgba(66, 71, 77, 0.4);
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--surface-container-highest);
+  overflow: hidden;
+}
+
+.mapPulse {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  animation: radar 3s infinite linear;
+}
+
+@keyframes radar {
+  0% { transform: scale(0.1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  position: relative;
+  z-index: 1;
+  padding: 4rem 0;
+}
+
+.emptyState span {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.emptyStateText {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.5rem;
+}

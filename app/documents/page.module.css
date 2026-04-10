@@ -1,0 +1,248 @@
+.page {
+  padding: 2rem 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--font-space-grotesk);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--on-surface);
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+  margin-top: 0.5rem;
+  max-width: 32rem;
+  line-height: 1.5;
+}
+
+.btnAdd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: var(--primary);
+  color: var(--surface);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btnAdd:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  background: var(--surface-container-low);
+  border: 1px dashed rgba(66, 71, 77, 0.4);
+  border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 0.75rem;
+}
+
+.emptySub {
+  font-size: 0.9375rem;
+  color: var(--on-surface-variant);
+  max-width: 24rem;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Document Card */
+.card {
+  background: var(--surface-container-low);
+  border: 1px solid rgba(66, 71, 77, 0.2);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(66, 71, 77, 0.4);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 0.25rem;
+  padding-right: 2rem; /* space for menu */
+}
+
+.cardSubtitle {
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+  font-family: var(--font-inter);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(66, 71, 77, 0.1);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+  font-weight: 600;
+}
+
+.metaValue {
+  font-size: 0.8125rem;
+  color: var(--on-surface);
+  font-weight: 500;
+}
+
+/* 3 Dot Menu */
+.menuContainer {
+  position: absolute;
+  top: 1.25rem;
+  right: 1rem;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  color: var(--on-surface-variant);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.menuBtn:hover {
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--surface-container-high);
+  border: 1px solid var(--outline);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  min-width: 150px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.dropdownBtn {
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  cursor: pointer;
+  transition: background 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdownBtn:hover {
+  background: var(--surface-container-highest);
+}
+
+.dropdownDelete {
+  color: #ffb4ab;
+}
+
+.dropdownDelete:hover {
+  background: rgba(255, 75, 75, 0.1);
+}
+
+.cardFooter {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.viewBtn {
+  font-size: 0.8125rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.viewBtn:hover {
+  text-decoration: underline;
+}
