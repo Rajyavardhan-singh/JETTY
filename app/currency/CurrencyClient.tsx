@@ -154,49 +154,6 @@ export default function CurrencyClient() {
 
       <div className={styles.grid}>
 
-        {/* Live Market Hero Card */}
-        <section>
-          <div className={styles.heroCard}>
-            <div className={styles.heroGradient}></div>
-            <div>
-              <div className={styles.heroCardHeader}>
-                <span className="msi msi-md" style={{ color: "var(--primary)" }}>show_chart</span>
-                <h3 className={styles.heroCardTitle}>Live Market Rates</h3>
-              </div>
-              <div className={styles.ratesList}>
-                <div className={styles.rateItem}>
-                  <p className={styles.heroRatePair}>1 USD</p>
-                  <div className={styles.heroRateValue}>
-                    <span className={styles.heroRateBig}>{marketRates?.USD_INR ? marketRates.USD_INR.toFixed(2) : "..."}</span>
-                    <span className={styles.heroRateCurrency}>INR</span>
-                  </div>
-                </div>
-                <div className={styles.rateItem}>
-                  <p className={styles.heroRatePair}>1 EUR</p>
-                  <div className={styles.heroRateValue}>
-                    <span className={styles.heroRateBig}>{marketRates?.EUR_INR ? marketRates.EUR_INR.toFixed(2) : "..."}</span>
-                    <span className={styles.heroRateCurrency}>INR</span>
-                  </div>
-                </div>
-                <div className={styles.rateItem}>
-                  <p className={styles.heroRatePair}>1 USD</p>
-                  <div className={styles.heroRateValue}>
-                    <span className={styles.heroRateBig}>{marketRates?.USD_EUR ? marketRates.USD_EUR.toFixed(2) : "..."}</span>
-                    <span className={styles.heroRateCurrency}>EUR</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.heroCardFooter}>
-              <div className={styles.heroUpdated}>
-                <span className="msi msi-sm">update</span>
-                Last updated just now
-              </div>
-              <div className={styles.heroMarketStatus}>Market Open</div>
-            </div>
-          </div>
-        </section>
-
         {/* Conversion Tool */}
         <section>
           <div className={styles.glassPanel}>
@@ -322,6 +279,8 @@ export default function CurrencyClient() {
                   className={styles.amountInput}
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
+                  onFocus={() => { if (amount === "1") setAmount(""); }}
+                  onBlur={() => { if (amount === "" || amount === "0") setAmount("1"); }}
                 />
                 <span className={styles.amountSymbol}>{COMMON_CURRENCIES.find(c => c.code === fromCurr)?.icon}</span>
               </div>
@@ -342,6 +301,51 @@ export default function CurrencyClient() {
 
           </div>
         </section>
+
+        {/* Live Market Hero Card */}
+        <section>
+          <div className={styles.heroCard}>
+            <div className={styles.heroGradient}></div>
+            <div>
+              <div className={styles.heroCardHeader}>
+                <span className="msi msi-md" style={{ color: "var(--primary)" }}>show_chart</span>
+                <h3 className={styles.heroCardTitle}>Live Market Rates</h3>
+              </div>
+              <div className={styles.ratesList}>
+                <div className={styles.rateItem}>
+                  <p className={styles.heroRatePair}>1 USD</p>
+                  <div className={styles.heroRateValue}>
+                    <span className={styles.heroRateBig}>{marketRates?.USD_INR ? marketRates.USD_INR.toFixed(2) : "..."}</span>
+                    <span className={styles.heroRateCurrency}>INR</span>
+                  </div>
+                </div>
+                <div className={styles.rateItem}>
+                  <p className={styles.heroRatePair}>1 EUR</p>
+                  <div className={styles.heroRateValue}>
+                    <span className={styles.heroRateBig}>{marketRates?.EUR_INR ? marketRates.EUR_INR.toFixed(2) : "..."}</span>
+                    <span className={styles.heroRateCurrency}>INR</span>
+                  </div>
+                </div>
+                <div className={styles.rateItem}>
+                  <p className={styles.heroRatePair}>1 USD</p>
+                  <div className={styles.heroRateValue}>
+                    <span className={styles.heroRateBig}>{marketRates?.USD_EUR ? marketRates.USD_EUR.toFixed(2) : "..."}</span>
+                    <span className={styles.heroRateCurrency}>EUR</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.heroCardFooter}>
+              <div className={styles.heroUpdated}>
+                <span className="msi msi-sm">update</span>
+                Last updated just now
+              </div>
+              <div className={styles.heroMarketStatus}>Market Open</div>
+            </div>
+          </div>
+        </section>
+
+
       </div>
 
       {/* Cash Manager (Coming Soon) */}
