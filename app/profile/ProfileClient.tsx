@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
@@ -53,6 +53,13 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
+
+  // Auto-dismiss the toast after 3 seconds
+  useEffect(() => {
+    if (!saveMsg) return;
+    const t = setTimeout(() => setSaveMsg(null), 3000);
+    return () => clearTimeout(t);
+  }, [saveMsg]);
 
   const [form, setForm] = useState<Profile>({
     id: user.id,
@@ -196,22 +203,6 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
   return (
     <div className={styles.profilePage}>
       <div className={styles.contentArea}>
-        {/* Feedback banner */}
-        {saveMsg && (
-          <div
-            style={{
-              padding: "0.75rem 1rem",
-              marginBottom: "1.5rem",
-              borderRadius: "0.5rem",
-              background: saveMsg.startsWith("Error") ? "rgba(255,75,75,0.12)" : "rgba(91,219,194,0.12)",
-              color: saveMsg.startsWith("Error") ? "#ffb4ab" : "var(--secondary)",
-              border: `1px solid ${saveMsg.startsWith("Error") ? "rgba(255,75,75,0.3)" : "rgba(91,219,194,0.3)"}`,
-              fontSize: "0.875rem",
-            }}
-          >
-            {saveMsg}
-          </div>
-        )}
 
         {/* Hero Section */}
         <section className={styles.heroSection}>
@@ -251,24 +242,14 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
           </div>
 
           <div className={styles.heroInfo}>
-            <div>
-              {prefix && <span className={styles.rankTitle}>{prefix}</span>}
-              <h2 className={styles.hugeTitle}>{displayName}</h2>
-              <p className={styles.roleText}>
-                <span className="msi msi-sm" style={{ color: "var(--secondary)", verticalAlign: "middle" }}>anchor</span> {form.rank || "Seafarer"}
-              </p>
-              <p style={{ fontSize: "0.8125rem", color: "var(--on-surface-variant)", marginTop: "0.5rem" }}>
-                {form.email}
-              </p>
-            </div>
-            {/* Show Edit Profile button only when not editing (Save/Cancel are in floating bar) */}
-            {!isEditing && (
-              <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-                <button className={styles.editBtn} onClick={() => setIsEditing(true)}>
-                  <span className="msi msi-sm">edit</span> Edit Profile
-                </button>
-              </div>
-            )}
+            {prefix && <span className={styles.rankTitle}>{prefix}</span>}
+            <h2 className={styles.hugeTitle}>{displayName}</h2>
+            <p className={styles.roleText}>
+              <span className="msi msi-sm" style={{ color: "var(--secondary)", verticalAlign: "middle" }}>anchor</span> {form.rank || "Seafarer"}
+            </p>
+            <p style={{ fontSize: "0.8125rem", color: "var(--on-surface-variant)", marginTop: "0.25rem" }}>
+              {form.email}
+            </p>
           </div>
         </section>
 
@@ -469,30 +450,48 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
         </section>
 
         {/* Spacer so floating bar doesn't obscure content */}
-        {isEditing && <div style={{ height: "5rem" }} />}
+        <div style={{ height: "5rem" }} />
       </div>
 
-      {/* Floating Save / Cancel bar — only visible while editing */}
-      {isEditing && (
-        <div className={styles.floatingEditBar}>
-          <button
-            type="button"
-            className={styles.floatCancelBtn}
-            onClick={() => { setIsEditing(false); setSaveMsg(null); }}
-          >
-            <span className="msi msi-sm">close</span> Cancel
-          </button>
-          <button
-            type="button"
-            className={styles.floatSaveBtn}
-            onClick={handleSave}
-            disabled={saving}
-          >
-            <span className="msi msi-sm">save</span>
-            {saving ? "Saving..." : "Save Profile"}
-          </button>
-        </div>
-      )}
+      {/* Floating action bar — always fixed at bottom */}
+      <div className={styles.floatingEditBar}>
+        {/* Toast message shown just above the buttons */}
+        {saveMsg && (
+          <div className={styles.floatingToast} data-error={saveMsg.startsWith("Error")}>
+            {saveMsg}
+          </div>
+        )}
+        {isEditing ? (
+          <div className={styles.floatingBarButtons}>
+            <button
+              type="button"
+              className={styles.floatCancelBtn}
+              onClick={() => { setIsEditing(false); setSaveMsg(null); }}
+            >
+              <span className="msi msi-sm">close</span> Cancel
+            </button>
+            <button
+              type="button"
+              className={styles.floatSaveBtn}
+              onClick={handleSave}
+              disabled={saving}
+            >
+              <span className="msi msi-sm">save</span>
+              {saving ? "Saving..." : "Save Profile"}
+            </button>
+          </div>
+        ) : (
+          <div className={styles.floatingBarButtons}>
+            <button
+              type="button"
+              className={styles.floatSaveBtn}
+              onClick={() => setIsEditing(true)}
+            >
+              <span className="msi msi-sm">edit</span> Edit Profile
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
