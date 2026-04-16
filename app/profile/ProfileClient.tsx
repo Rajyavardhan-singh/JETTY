@@ -130,23 +130,43 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
 
   // -- Save profile -----------------------------------------------------------
   async function handleSave() {
+    // Validate mandatory fields
+    if (!form.full_name?.trim()) {
+      setSaveMsg("Error: Full Name is required.");
+      return;
+    }
+    if (!form.indos_number?.trim()) {
+      setSaveMsg("Error: INDOS Number is required.");
+      return;
+    }
+    if (!form.date_of_birth?.trim()) {
+      setSaveMsg("Error: Date of Birth is required.");
+      return;
+    }
+
     setSaving(true);
     setSaveMsg(null);
     const supabase = createClient();
+
+    // Convert empty strings to null for unique-constrained fields to avoid
+    // duplicate key violations (Postgres treats '' as a non-null unique value).
+    const toNullIfEmpty = (v: string | null | undefined) =>
+      v?.trim() ? v.trim() : null;
+
     const { error } = await supabase
       .from("seafarer_profiles")
       .update({
-        full_name: form.full_name,
-        rank: form.rank,
+        full_name: form.full_name.trim(),
+        rank: toNullIfEmpty(form.rank),
         date_of_birth: form.date_of_birth || null,
-        indos_number: form.indos_number,
-        cdc_number: form.cdc_number,
-        passport_number: form.passport_number,
-        phone: form.phone,
-        address: form.address,
-        linkedin_url: form.linkedin_url,
-        personal_website: form.personal_website,
-        portfolio_url: form.portfolio_url,
+        indos_number: toNullIfEmpty(form.indos_number),
+        cdc_number: toNullIfEmpty(form.cdc_number),
+        passport_number: toNullIfEmpty(form.passport_number),
+        phone: toNullIfEmpty(form.phone),
+        address: toNullIfEmpty(form.address),
+        linkedin_url: toNullIfEmpty(form.linkedin_url),
+        personal_website: toNullIfEmpty(form.personal_website),
+        portfolio_url: toNullIfEmpty(form.portfolio_url),
         updated_at: new Date().toISOString(),
       })
       .eq("id", user.id);
@@ -261,13 +281,14 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
 
               {/* Full Name */}
               <div className={styles.dataItem}>
-                <p className={styles.dataLabel}>Full Name</p>
+                <p className={styles.dataLabel}>Full Name <span style={{ color: "#ff6b6b" }}>*</span></p>
                 {isEditing ? (
                   <input
                     className={styles.editInput}
                     value={form.full_name || ""}
                     onChange={(e) => handleChange("full_name", e.target.value)}
-                    placeholder="Enter full name"
+                    placeholder="Enter full name (required)"
+                    required
                   />
                 ) : (
                   <p className={styles.dataValue}>{form.full_name || <span style={{ color: "var(--on-surface-variant)", fontStyle: "italic", fontSize: "0.875rem" }}>Not set</span>}</p>
@@ -322,13 +343,14 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
 
               {/* Date of Birth */}
               <div className={styles.dataItem}>
-                <p className={styles.dataLabel}>Date of Birth</p>
+                <p className={styles.dataLabel}>Date of Birth <span style={{ color: "#ff6b6b" }}>*</span></p>
                 {isEditing ? (
                   <input
                     className={styles.editInput}
                     type="date"
                     value={form.date_of_birth || ""}
                     onChange={(e) => handleChange("date_of_birth", e.target.value)}
+                    required
                   />
                 ) : (
                   <p className={styles.dataValue}>
@@ -342,9 +364,9 @@ export default function ProfileClient({ profile, user, initialEditing = false }:
 
               {/* Indos Number */}
               <div className={styles.dataItem}>
-                <p className={styles.dataLabel}>Indos Number</p>
+                <p className={styles.dataLabel}>Indos Number <span style={{ color: "#ff6b6b" }}>*</span></p>
                 {isEditing ? (
-                  <input className={styles.editInput} value={form.indos_number || ""} onChange={(e) => handleChange("indos_number", e.target.value)} placeholder="e.g. 24EM..." />
+                  <input className={styles.editInput} value={form.indos_number || ""} onChange={(e) => handleChange("indos_number", e.target.value)} placeholder="e.g. 24EM... (required)" required />
                 ) : (
                   <p className={styles.dataValue}>{form.indos_number || <span style={{ color: "var(--on-surface-variant)", fontStyle: "italic", fontSize: "0.875rem" }}>Not set</span>}</p>
                 )}
